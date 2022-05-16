@@ -7,20 +7,22 @@ class Controller {
                     var i = 1
                     val currentValue = gameBoard.board[x][y].value
                     do {
-                        when (gameBoard.board[x + i][y].value) {
-                            null -> {
+                        when  {
+                            gameBoard.board[x + i][y].value == null -> {
                                 gameBoard.board[x + i][y].value = currentValue
                                 gameBoard.board[x + i - 1][y].value = null
                                 i++
                             }
-                            currentValue -> {
+                            gameBoard.board[x + i][y].value == currentValue -> {
                                 gameBoard.board[x + i][y].value = currentValue!! * 2
                                 gameBoard.board[x + i - 1][y].value = null
                                 i++
 
                             }
+                            gameBoard.board[x + i][y].value != currentValue -> break
+
                         }
-                    } while (x + i < 3)
+                    } while (x + i <= 3)
 
 
                 }
@@ -38,20 +40,22 @@ class Controller {
                     var i = 1
                     val currentValue = gameBoard.board[x][y].value
                     do {
-                        when (gameBoard.board[x - i][y].value) {
-                            null -> {
+                        when  {
+                            gameBoard.board[x - i][y].value == null -> {
                                 gameBoard.board[x - i][y].value = currentValue
                                 gameBoard.board[x - i + 1][y].value = null
                                 i++
                             }
-                            currentValue -> {
+                            gameBoard.board[x - i][y].value == currentValue -> {
                                 gameBoard.board[x - i][y].value = currentValue!! * 2
                                 gameBoard.board[x - i + 1][y].value = null
                                 i++
 
                             }
+                            gameBoard.board[x - i][y].value != currentValue -> break
+
                         }
-                    } while (x - i > 0)
+                    } while (x - i >= 0)
                 }
             }
         }
@@ -68,20 +72,22 @@ class Controller {
                     var i = 1
                     val currentValue = gameBoard.board[x][y].value
                     do {
-                        when (gameBoard.board[x][y + i].value) {
-                            null -> {
+                        when  {
+                            gameBoard.board[x][y + i].value == null -> {
                                 gameBoard.board[x][y + i].value = currentValue
                                 gameBoard.board[x][y + i - 1].value = null
                                 i++
                             }
-                            currentValue -> {
+                            gameBoard.board[x][y + i].value == currentValue -> {
                                 gameBoard.board[x][y + i].value = currentValue!! * 2
                                 gameBoard.board[x][y + i - 1].value = null
                                 i++
 
                             }
+                            gameBoard.board[x][y + i].value != currentValue -> break
+
                         }
-                    } while (y + i < 3)
+                    } while (y + i <= 3)
                 }
             }
         }
@@ -97,20 +103,21 @@ class Controller {
                     var i = 1
                     val currentValue = gameBoard.board[x][y].value
                     do {
-                        when (gameBoard.board[x][y - i].value) {
-                            null -> {
+                        when  {
+                            gameBoard.board[x][y - i].value == null -> {
                                 gameBoard.board[x][y - i].value = currentValue
                                 gameBoard.board[x][y - i + 1].value = null
                                 i++
                             }
-                            currentValue -> {
+                            gameBoard.board[x][y - i].value == currentValue -> {
                                 gameBoard.board[x][y - i].value = currentValue!! * 2
                                 gameBoard.board[x][y - i + 1].value = null
                                 i++
 
                             }
+                            gameBoard.board[x][y - i].value != currentValue -> break
                         }
-                    } while (y - i > 0)
+                    } while (y - i >= 0)
                 }
             }
         }

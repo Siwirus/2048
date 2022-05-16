@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-10T00:01:57" hostname="LAPTOP-9KT2AN7H" time="0.115">
+<testsuite name="Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-18T22:17:08" hostname="LAPTOP-9KT2AN7H" time="0.106">
   <properties/>
-  <testcase name="test1" classname="Tests" time="0.115"/>
-  <system-out><![CDATA[4
-2
-4
-4
-4
-4
-4
-2
-null
-4
-null
-2
-2
-4
-2
-4
-]]></system-out>
+  <testcase name="test1" classname="Tests" time="0.106"/>
+  <system-out><![CDATA[ 
+4  4  null  4   
+4  4  4  2   
+4  2  4  4   
+null  2  4  4  
+ 
+2  null  null  null   
+null  16  null  null   
+2  16  4  null   
+8  4  2  8  ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -61,8 +61,8 @@ fun main() = application {
 }
 @Composable
 fun App1(){
-    val board = Board(4, 4)
-    board.beginOfGame()
+    val board = Controller()
+    board.gameBoard.beginOfGame()
 
 }
 
