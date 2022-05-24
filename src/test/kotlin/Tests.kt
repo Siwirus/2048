@@ -12,31 +12,31 @@ class Tests {
         val board = boradCont.gameBoard
         assertTrue(board.creationOfBoard())
         assertTrue(board.hasFreeCells())
-        for (i in 0..13) {
+        for (i in 0..9) {
             board.hasFreeCells()
             board.randomCell()
         }
         for (x in 0..3) {
             println(" ")
             for (y in 0..3) {
-                print(board.board[x][y].value)
+               if ( board.board[x][y].value == null ) print(0)
+                else print(board.board[x][y].value)
                 print("  ")
             }
-
         }
         println("")
-        boradCont.down()
-        boradCont.left()
-        boradCont.up()
-        boradCont.right()
+//        boradCont.down()
+//        boradCont.left()
+//        boradCont.up()
+        // boradCont.right()
 
         for (x in 0..3) {
             println(" ")
             for (y in 0..3) {
-                print(board.board[x][y].value)
+                if (board.board[x][y].value == null) print(0)
+                else print(board.board[x][y].value)
                 print("  ")
             }
-
         }
 
 

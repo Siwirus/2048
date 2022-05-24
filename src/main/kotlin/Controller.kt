@@ -1,6 +1,8 @@
 class Controller {
     var gameBoard = Board(4, 4)
-    fun right() {
+    fun down() {
+        gameBoard.hasFreeCells()
+        val freeCells = gameBoard.listOfFreeCell
         for (x in 2 downTo 0) {
             for (y in 0 until 4) {
                 if (gameBoard.board[x][y].value != null) {
@@ -29,11 +31,13 @@ class Controller {
             }
         }
         gameBoard.hasFreeCells()
-        gameBoard.randomCell()
+         if (freeCells != gameBoard.listOfFreeCell) gameBoard.randomCell()
 
     }
 
-    fun left() {
+    fun up() {
+        gameBoard.hasFreeCells()
+        val freeCells = gameBoard.listOfFreeCell
         for (x in 1 until 4) {
             for (y in 0 until 4) {
                 if (gameBoard.board[x][y].value != null) {
@@ -59,13 +63,18 @@ class Controller {
                 }
             }
         }
+
+
         gameBoard.hasFreeCells()
-        gameBoard.randomCell()
+        if (freeCells != gameBoard.listOfFreeCell) gameBoard.randomCell()
+
 
     }
 
 
-    fun down(){
+    fun right(){
+        gameBoard.hasFreeCells()
+        val freeCells = gameBoard.listOfFreeCell
         for (y in 2 downTo 0)  {
             for (x in 0 until 4)  {
                 if (gameBoard.board[x][y].value != null) {
@@ -91,12 +100,16 @@ class Controller {
                 }
             }
         }
+
         gameBoard.hasFreeCells()
-        gameBoard.randomCell()
+        if (freeCells != gameBoard.listOfFreeCell) gameBoard.randomCell()
+
 
     }
 
-    fun up(){
+    fun left(){
+        gameBoard.hasFreeCells()
+        val freeCells = gameBoard.listOfFreeCell
         for (y in 1 until 4)  {
             for (x in 0 until 4)  {
                 if (gameBoard.board[x][y].value != null) {
@@ -122,8 +135,23 @@ class Controller {
             }
         }
         gameBoard.hasFreeCells()
-        gameBoard.randomCell()
+        if (freeCells != gameBoard.listOfFreeCell) gameBoard.randomCell()
 
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Controller
+
+        if (gameBoard != other.gameBoard) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return gameBoard.hashCode()
     }
 }
 
