@@ -7,13 +7,57 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
-import kotlin.concurrent.timer
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.key.*
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.*
 
+@OptIn(ExperimentalUnitApi::class)
+@ExperimentalComposeUiApi
 fun main() = application {
+    var list by remember {
+        controller1.gameBoard.creationOfBoard()
+        mutableStateOf(controller1.gameBoard.board)
+    }
     Window(
+        onKeyEvent = {
+            if (it.type == KeyEventType.KeyUp) {
+                when (it.key) {
+                    Key.DirectionDown -> {
+                        down()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
+                        println("     ")
+                    }
+                    Key.DirectionUp -> {
+                        up()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
+                        println("     ")
+                    }
+                    Key.DirectionRight -> {
+                        right()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
+                        println("     ")
+                    }
+                    Key.DirectionLeft -> {
+                        left()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
+                        println("     ")
+
+                    }
+                }
+            }
+            false
+        },
         onCloseRequest = ::exitApplication,
         title = "2048",
         state = rememberWindowState(
@@ -22,36 +66,53 @@ fun main() = application {
             height = 600.dp
         ),
     ) {
-        val controller = Controller()
-        val controller1 = Controller()
-        val controllerBoard = controller.gameBoard.board
 
         MaterialTheme {
-            var list by remember {
-                controller1.gameBoard.creationOfBoard()
-                mutableStateOf(controller1.gameBoard.board)
-            }
-
+            Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Column {
-                    Column {
-                        for (line in list) {
-                            Row {
-                                for (cell in line) {
-                                    Box(modifier = Modifier.size(Dp(40f)).background(Color.LightGray)) {
-                                        Text(if (cell.value == null) "" else cell.value.toString())
-                                    }
+                    for (line in list) {
+                        Row {
+                            for (cell in line) {
+                                Box(
+                                    modifier = Modifier.size(Dp(80f)).background(
+                                        color = when (cell.value) {
+                                            null -> Color.LightGray
+                                            2 -> Color(255, 237, 222)
+                                            4 -> Color(255, 226, 201)
+                                            8 -> Color(254, 199, 153)
+                                            16 -> Color(255, 143, 49)
+                                            32 -> Color(207, 94, 0)
+                                            64 -> Color(199, 0, 57)
+                                            128 -> Color(255, 234, 127)
+                                            256 -> Color(255, 213, 2)
+                                            512 -> Color(240, 212, 68)
+                                            1024 -> Color(255, 195, 0)
+                                            2048 -> Color(255, 195, 0)
+                                            else -> Color.LightGray
+                                        }
+                                    )
+                                ) {
+                                    Text(
+                                        fontSize = TextUnit(28f, TextUnitType.Sp),
+                                        text = if (cell.value == null) "" else cell.value.toString(),
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.align(Alignment.Center)
+
+                                    )
                                 }
                             }
                         }
                     }
                 }
-
-
+            }
 
             MenuBar {
                 Menu("Actions") {
                     Item("Restart", onClick = {
-
+                        restart()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
                     })
                 }
             }
@@ -62,18 +123,10 @@ fun main() = application {
             ) {
                 Button(modifier = Modifier,
                     onClick = {
-                        if (controllerBoard.isEmpty()) controller.gameBoard.beginOfGame()
-                        controller.left()
+                        left()
                         list = controller1.gameBoard.board
                         list = controllerBoard
-                        for (x in 0..3) {
-                            println(" ")
-                            for (y in 0..3) {
-                                if (controllerBoard[x][y].value == null) print(0)
-                                else print(controllerBoard[x][y].value)
-                                print("  ")
-                            }
-                        }
+                        controller.printBoard()
                         println("     ")
                     }) {
                     Text("Left")
@@ -81,37 +134,21 @@ fun main() = application {
                 Column(Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
                     Button(modifier = Modifier,
                         onClick = {
-                            if (controllerBoard.isEmpty()) controller.gameBoard.beginOfGame()
-                            controller.up()
+                            up()
                             list = controller1.gameBoard.board
                             list = controllerBoard
-                            for (x in 0..3) {
-                                println(" ")
-                                for (y in 0..3) {
-                                    if (controllerBoard[x][y].value == null) print(0)
-                                    else print(controllerBoard[x][y].value)
-                                    print("  ")
-                                }
-                            }
-                            println("    ")
+                            controller.printBoard()
+                            println("     ")
                         }) {
                         Text("Up")
                     }
 
                     Button(modifier = Modifier,
                         onClick = {
-                            if (controllerBoard.isEmpty()) controller.gameBoard.beginOfGame()
-                            controller.down()
+                            down()
                             list = controller1.gameBoard.board
                             list = controllerBoard
-                            for (x in 0..3) {
-                                println(" ")
-                                for (y in 0..3) {
-                                    if (controllerBoard[x][y].value == null) print(0)
-                                    else print(controllerBoard[x][y].value)
-                                    print("  ")
-                                }
-                            }
+                            controller.printBoard()
                             println("     ")
                         }) {
                         Text("Down")
@@ -119,28 +156,20 @@ fun main() = application {
                 }
                 Button(modifier = Modifier,
                     onClick = {
-                        if (controllerBoard.isEmpty()) controller.gameBoard.beginOfGame()
-                        controller.right()
+                        right()
                         list = controller1.gameBoard.board
                         list = controllerBoard
-                        for (x in 0..3) {
-                            println(" ")
-                            for (y in 0..3) {
-                                if (controllerBoard[x][y].value == null) print(0)
-                                else print(controllerBoard[x][y].value)
-                                print("  ")
-                            }
-                        }
+                        controller.printBoard()
                         println("     ")
                     }) {
                     Text("Right")
                 }
             }
-
-
         }
     }
+
 }
+
 
 
 

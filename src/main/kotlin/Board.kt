@@ -54,6 +54,7 @@ class Board(val width: Int, val height: Int) {
         return true
     }
 
+
     override fun hashCode(): Int {
         var result = width
         result = 31 * result + height

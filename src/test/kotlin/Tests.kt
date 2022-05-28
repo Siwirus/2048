@@ -25,10 +25,10 @@ class Tests {
             }
         }
         println("")
-//        boradCont.down()
-//        boradCont.left()
-//        boradCont.up()
-        // boradCont.right()
+        boradCont.down()
+        boradCont.left()
+        boradCont.up()
+        boradCont.right()
 
         for (x in 0..3) {
             println(" ")

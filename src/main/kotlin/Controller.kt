@@ -138,6 +138,16 @@ class Controller {
         if (freeCells != gameBoard.listOfFreeCell) gameBoard.randomCell()
 
     }
+    fun printBoard(){
+        for (x in 0..3) {
+            println(" ")
+            for (y in 0..3) {
+                if (gameBoard.board[x][y].value == null) print(0)
+                else print(gameBoard.board[x][y].value)
+                print("  ")
+            }
+        }
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
