@@ -1,5 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -121,7 +122,9 @@ fun main() = application {
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Button(modifier = Modifier,
+                OutlinedButton(
+                    shape = CircleShape,
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
                     onClick = {
                         left()
                         list = controller1.gameBoard.board
@@ -129,10 +132,15 @@ fun main() = application {
                         controller.printBoard()
                         println("     ")
                     }) {
-                    Text("Left")
+                    Text(
+                        color = Color(0,0,0),
+                        text = "Left"
+                    )
                 }
                 Column(Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-                    Button(modifier = Modifier,
+                    OutlinedButton(
+                        shape = CircleShape,
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
                         onClick = {
                             up()
                             list = controller1.gameBoard.board
@@ -140,10 +148,15 @@ fun main() = application {
                             controller.printBoard()
                             println("     ")
                         }) {
-                        Text("Up")
+                        Text(
+                            color = Color(0,0,0),
+                            text = "Up"
+                        )
                     }
 
-                    Button(modifier = Modifier,
+                    OutlinedButton(
+                        shape = CircleShape,
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
                         onClick = {
                             down()
                             list = controller1.gameBoard.board
@@ -151,10 +164,15 @@ fun main() = application {
                             controller.printBoard()
                             println("     ")
                         }) {
-                        Text("Down")
+                        Text(
+                            color = Color(0,0,0),
+                            text = "Down"
+                        )
                     }
                 }
-                Button(modifier = Modifier,
+                OutlinedButton(
+                    shape = CircleShape,
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
                     onClick = {
                         right()
                         list = controller1.gameBoard.board
@@ -162,7 +180,10 @@ fun main() = application {
                         controller.printBoard()
                         println("     ")
                     }) {
-                    Text("Right")
+                    Text(
+                        color = Color(0,0,0),
+                        text = "Right"
+                    )
                 }
             }
         }
