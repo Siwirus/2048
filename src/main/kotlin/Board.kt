@@ -45,10 +45,15 @@ class Board(val width: Int, val height: Int) {
         if (javaClass != other?.javaClass) return false
 
         other as Board
-
+        if (this.board.isNotEmpty() && other.board.isNotEmpty()) {
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    if (this.board[x][y].value != other.board[x][y].value) return false
+                }
+            }
+        }
         if (width != other.width) return false
         if (height != other.height) return false
-        if (board != other.board) return false
         if (listOfFreeCell != other.listOfFreeCell) return false
 
         return true

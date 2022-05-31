@@ -1,6 +1,7 @@
 class Controller {
     var stepValue = 0
     var gameBoard = Board(4, 4)
+    var score = 0
     fun down() {
         gameBoard.hasFreeCells()
         val freeCells = gameBoard.listOfFreeCell
@@ -23,6 +24,7 @@ class Controller {
                                 gameBoard.board[x + i - 1][y].value = null
                                 stepValue = currentValue * 2
                                 i++
+                                score += currentValue * 2
                             }
                             gameBoard.board[x + i][y].value != currentValue -> break
                             else -> break
@@ -60,6 +62,7 @@ class Controller {
                                 gameBoard.board[x - i + 1][y].value = null
                                 stepValue = currentValue * 2
                                 i++
+                                score += currentValue * 2
                             }
                             gameBoard.board[x - i][y].value != currentValue -> break
                             else -> break
@@ -100,7 +103,7 @@ class Controller {
                                 gameBoard.board[x][y + i - 1].value = null
                                 stepValue = currentValue * 2
                                 i++
-                                stepValue = currentValue * 2
+                                score += currentValue * 2
                             }
                             gameBoard.board[x][y + i].value != currentValue -> break
                             else -> break
@@ -139,6 +142,7 @@ class Controller {
                                 gameBoard.board[x][y - i + 1].value = null
                                 stepValue = currentValue * 2
                                 i++
+                                score += currentValue * 2
                             }
                             gameBoard.board[x][y - i].value != currentValue -> break
                             else -> break

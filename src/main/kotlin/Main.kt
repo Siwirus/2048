@@ -69,7 +69,8 @@ fun main() = application {
     ) {
 
         MaterialTheme {
-            Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+            controller.gameBoard.beginOfGame()
+                Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Column {
                     for (line in list) {
                         Row {
@@ -106,7 +107,6 @@ fun main() = application {
                     }
                 }
             }
-
             MenuBar {
                 Menu("Actions") {
                     Item("Restart", onClick = {
@@ -124,7 +124,7 @@ fun main() = application {
             ) {
                 OutlinedButton(
                     shape = CircleShape,
-                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159)),
                     onClick = {
                         left()
                         list = controller1.gameBoard.board
@@ -133,14 +133,14 @@ fun main() = application {
                         println("     ")
                     }) {
                     Text(
-                        color = Color(0,0,0),
+                        color = Color(0, 0, 0),
                         text = "Left"
                     )
                 }
                 Column(Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
                     OutlinedButton(
                         shape = CircleShape,
-                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159)),
                         onClick = {
                             up()
                             list = controller1.gameBoard.board
@@ -149,14 +149,14 @@ fun main() = application {
                             println("     ")
                         }) {
                         Text(
-                            color = Color(0,0,0),
+                            color = Color(0, 0, 0),
                             text = "Up"
                         )
                     }
 
                     OutlinedButton(
                         shape = CircleShape,
-                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159)),
                         onClick = {
                             down()
                             list = controller1.gameBoard.board
@@ -165,14 +165,14 @@ fun main() = application {
                             println("     ")
                         }) {
                         Text(
-                            color = Color(0,0,0),
+                            color = Color(0, 0, 0),
                             text = "Down"
                         )
                     }
                 }
                 OutlinedButton(
                     shape = CircleShape,
-                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159 )),
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159)),
                     onClick = {
                         right()
                         list = controller1.gameBoard.board
@@ -181,8 +181,28 @@ fun main() = application {
                         println("     ")
                     }) {
                     Text(
-                        color = Color(0,0,0),
+                        color = Color(0, 0, 0),
                         text = "Right"
+                    )
+                }
+            }
+
+
+            if (isLose() || isWin()) {
+                OutlinedButton(
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color(229, 213, 159)),
+                    onClick = {
+                        restart()
+                        list = controller1.gameBoard.board
+                        list = controllerBoard
+                        controller.printBoard()
+                    },
+
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Text(
+                        color = Color(0, 0, 0),
+                        text = "You $stateOfgame, your score: $score"
                     )
                 }
             }

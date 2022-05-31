@@ -1,52 +1,65 @@
 val controller = Controller()
 val controller1 = Controller()
 var controllerBoard = controller.gameBoard.board
-//255, 237, 222  2
-// 255, 226, 201     4
-//254, 199, 153       8
-// 255, 143, 49      16
-//207, 94, 0        32
-//199, 0, 57        64
-//255, 234, 127         128
-//255, 213, 2          256
-//240, 212, 68       512
-//255, 195, 0
-//255, 195, 0
+var score = controller.score
+var stateOfgame = ""
 
+fun isLose(): Boolean {
+    val other = Controller()
+    other.gameBoard.beginOfGame()
+    for (x in 0 until 4) {
+        for (y in 0 until 4) {
+            other.gameBoard.board[x][y].value = controllerBoard[x][y].value
+        }
+    }
+    other.right()
+    other.left()
+    other.up()
+    other.down()
+    stateOfgame = "lose"
+    return other.gameBoard.board == controllerBoard
+}
+fun isWin(): Boolean {
+    for (x in 0 until 4) {
+        for (y in 0 until 4) {
+            if (controllerBoard[x][y].value == 2048) {
+                stateOfgame = "win"
+                return true
+            }
+        }
+    }
+    return false
+}
 
 
 fun left() {
     controller.gameBoard.beginOfGame()
     controller.left()
-
+    score = controller.score
 }
 
 fun right() {
     controller.gameBoard.beginOfGame()
     controller.right()
-
-
+    score = controller.score
 }
 
 fun down() {
     controller.gameBoard.beginOfGame()
     controller.down()
-
-
+    score = controller.score
 }
 
 fun up() {
     controller.gameBoard.beginOfGame()
     controller.up()
-
-
+    score = controller.score
 }
 
 fun restart() {
     controller.gameBoard.board = mutableListOf()
     controller.gameBoard.beginOfGame()
     controllerBoard = controller.gameBoard.board
-
 }
 
 
