@@ -2,7 +2,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.*
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
@@ -57,7 +55,7 @@ fun main() = application {
                     }
                 }
             }
-            false
+            true
         },
         onCloseRequest = ::exitApplication,
         title = "2048",
@@ -202,7 +200,7 @@ fun main() = application {
                 ) {
                     Text(
                         color = Color(0, 0, 0),
-                        text = "You $stateOfgame, your score: $score"
+                        text = "You $stateOfGame, your score: $score"
                     )
                 }
             }

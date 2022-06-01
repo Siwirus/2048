@@ -2,7 +2,7 @@ val controller = Controller()
 val controller1 = Controller()
 var controllerBoard = controller.gameBoard.board
 var score = controller.score
-var stateOfgame = ""
+var stateOfGame = ""
 
 fun isLose(): Boolean {
     val other = Controller()
@@ -16,14 +16,14 @@ fun isLose(): Boolean {
     other.left()
     other.up()
     other.down()
-    stateOfgame = "lose"
+    stateOfGame = "lose"
     return other.gameBoard.board == controllerBoard
 }
 fun isWin(): Boolean {
     for (x in 0 until 4) {
         for (y in 0 until 4) {
             if (controllerBoard[x][y].value == 2048) {
-                stateOfgame = "win"
+                stateOfGame = "win"
                 return true
             }
         }

@@ -1,7 +1,6 @@
 class Board(val width: Int, val height: Int) {
     var board: MutableList<MutableList<Cell>> = mutableListOf()
     var listOfFreeCell = mutableListOf<Cell>()
-    var listOfValues = mutableListOf<Int>()
 
     fun creationOfBoard(): Boolean {
         for (x in 0 until width) {

@@ -38,8 +38,6 @@ class Tests {
                 print("  ")
             }
         }
-
-
         assertTrue(board.hasFreeCells())
     }
 }

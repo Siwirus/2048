@@ -1,5 +1,5 @@
 class Controller {
-    var stepValue = 0
+    private var stepValue = 0
     var gameBoard = Board(4, 4)
     var score = 0
     fun down() {
